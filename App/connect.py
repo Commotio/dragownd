@@ -3,6 +3,8 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_table import Table, Col
 from flask_mysqldb import MySQL
 import pandas
+import matplotlib
+matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 from matplotlib.figure import Figure
 import datetime
