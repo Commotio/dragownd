@@ -1,0 +1,607 @@
+-- MySQL dump 10.16  Distrib 10.2.32-MariaDB, for Linux (x86_64)
+--
+-- Host: localhost    Database: dragownd
+-- ------------------------------------------------------
+-- Server version	10.2.32-MariaDB
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Current Database: `dragownd`
+--
+
+USE `dragownd`;
+
+--
+-- Temporary table structure for view `Active_Hosts`
+--
+
+DROP TABLE IF EXISTS `Active_Hosts`;
+/*!50001 DROP VIEW IF EXISTS `Active_Hosts`*/;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+/*!50001 CREATE TABLE `Active_Hosts` (
+  `id` tinyint NOT NULL,
+  `ip` tinyint NOT NULL,
+  `ip_str` tinyint NOT NULL,
+  `hostname` tinyint NOT NULL,
+  `active` tinyint NOT NULL,
+  `os` tinyint NOT NULL,
+  `transport` tinyint NOT NULL,
+  `first_seen` tinyint NOT NULL,
+  `last_seen` tinyint NOT NULL,
+  `last_update` tinyint NOT NULL
+) ENGINE=MyISAM */;
+SET character_set_client = @saved_cs_client;
+
+--
+-- Temporary table structure for view `Active_Services`
+--
+
+DROP TABLE IF EXISTS `Active_Services`;
+/*!50001 DROP VIEW IF EXISTS `Active_Services`*/;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+/*!50001 CREATE TABLE `Active_Services` (
+  `id` tinyint NOT NULL,
+  `ip` tinyint NOT NULL,
+  `ip_str` tinyint NOT NULL,
+  `port` tinyint NOT NULL,
+  `hostname` tinyint NOT NULL,
+  `active` tinyint NOT NULL,
+  `product` tinyint NOT NULL,
+  `version` tinyint NOT NULL,
+  `os` tinyint NOT NULL,
+  `transport` tinyint NOT NULL,
+  `first_seen` tinyint NOT NULL,
+  `last_seen` tinyint NOT NULL,
+  `last_update` tinyint NOT NULL
+) ENGINE=MyISAM */;
+SET character_set_client = @saved_cs_client;
+
+--
+-- Temporary table structure for view `Recently_Found_Hosts_1_Day`
+--
+
+DROP TABLE IF EXISTS `Recently_Found_Hosts_1_Day`;
+/*!50001 DROP VIEW IF EXISTS `Recently_Found_Hosts_1_Day`*/;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+/*!50001 CREATE TABLE `Recently_Found_Hosts_1_Day` (
+  `ip` tinyint NOT NULL,
+  `ip_str` tinyint NOT NULL,
+  `hostname` tinyint NOT NULL,
+  `active` tinyint NOT NULL,
+  `os` tinyint NOT NULL,
+  `first_seen` tinyint NOT NULL,
+  `last_seen` tinyint NOT NULL,
+  `last_update` tinyint NOT NULL
+) ENGINE=MyISAM */;
+SET character_set_client = @saved_cs_client;
+
+--
+-- Temporary table structure for view `Recently_Found_Services_1_Day`
+--
+
+DROP TABLE IF EXISTS `Recently_Found_Services_1_Day`;
+/*!50001 DROP VIEW IF EXISTS `Recently_Found_Services_1_Day`*/;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+/*!50001 CREATE TABLE `Recently_Found_Services_1_Day` (
+  `id` tinyint NOT NULL,
+  `ip` tinyint NOT NULL,
+  `ip_str` tinyint NOT NULL,
+  `port` tinyint NOT NULL,
+  `hostname` tinyint NOT NULL,
+  `active` tinyint NOT NULL,
+  `product` tinyint NOT NULL,
+  `version` tinyint NOT NULL,
+  `os` tinyint NOT NULL,
+  `transport` tinyint NOT NULL,
+  `first_seen` tinyint NOT NULL,
+  `last_seen` tinyint NOT NULL,
+  `last_update` tinyint NOT NULL
+) ENGINE=MyISAM */;
+SET character_set_client = @saved_cs_client;
+
+--
+-- Temporary table structure for view `Recently_Lost_Hosts_1_Day`
+--
+
+DROP TABLE IF EXISTS `Recently_Lost_Hosts_1_Day`;
+/*!50001 DROP VIEW IF EXISTS `Recently_Lost_Hosts_1_Day`*/;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+/*!50001 CREATE TABLE `Recently_Lost_Hosts_1_Day` (
+  `ip` tinyint NOT NULL,
+  `ip_str` tinyint NOT NULL,
+  `hostname` tinyint NOT NULL,
+  `active` tinyint NOT NULL,
+  `os` tinyint NOT NULL,
+  `first_seen` tinyint NOT NULL,
+  `last_seen` tinyint NOT NULL,
+  `last_update` tinyint NOT NULL
+) ENGINE=MyISAM */;
+SET character_set_client = @saved_cs_client;
+
+--
+-- Temporary table structure for view `Recently_Lost_Services_1_Day`
+--
+
+DROP TABLE IF EXISTS `Recently_Lost_Services_1_Day`;
+/*!50001 DROP VIEW IF EXISTS `Recently_Lost_Services_1_Day`*/;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+/*!50001 CREATE TABLE `Recently_Lost_Services_1_Day` (
+  `id` tinyint NOT NULL,
+  `ip` tinyint NOT NULL,
+  `ip_str` tinyint NOT NULL,
+  `port` tinyint NOT NULL,
+  `hostname` tinyint NOT NULL,
+  `active` tinyint NOT NULL,
+  `product` tinyint NOT NULL,
+  `version` tinyint NOT NULL,
+  `os` tinyint NOT NULL,
+  `transport` tinyint NOT NULL,
+  `first_seen` tinyint NOT NULL,
+  `last_seen` tinyint NOT NULL,
+  `last_update` tinyint NOT NULL
+) ENGINE=MyISAM */;
+SET character_set_client = @saved_cs_client;
+
+--
+-- Table structure for table `host`
+--
+
+DROP TABLE IF EXISTS `host`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `host` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `ip` int(10) unsigned NOT NULL,
+  `ip_str` varchar(20) DEFAULT NULL,
+  `port` int(11) NOT NULL,
+  `hostname` varchar(100) DEFAULT NULL,
+  `active` tinyint(1) DEFAULT NULL,
+  `product` varchar(50) DEFAULT NULL,
+  `version` varchar(100) DEFAULT NULL,
+  `os` varchar(20) DEFAULT NULL,
+  `transport` varchar(5) DEFAULT NULL,
+  `first_seen` date DEFAULT NULL,
+  `last_seen` date DEFAULT NULL,
+  `last_update` date DEFAULT NULL,
+  PRIMARY KEY (`ip`,`port`),
+  UNIQUE KEY `host_id_key` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2359 DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `host_LastImport`
+--
+
+DROP TABLE IF EXISTS `host_LastImport`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `host_LastImport` (
+  `version` text DEFAULT NULL,
+  `os` text DEFAULT NULL,
+  `ip_str` text DEFAULT NULL,
+  `transport` text DEFAULT NULL,
+  `ip` bigint(20) DEFAULT NULL,
+  `product` text DEFAULT NULL,
+  `hostname` text DEFAULT NULL,
+  `port` text DEFAULT NULL,
+  `active` tinyint(1) DEFAULT NULL,
+  `date` text DEFAULT NULL,
+  CONSTRAINT `CONSTRAINT_1` CHECK (`active` in (0,1))
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping routines for database 'dragownd'
+--
+/*!50003 DROP PROCEDURE IF EXISTS `Environment_Total_Hosts_Stored_Procedure` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'IGNORE_SPACE,STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`dragownd`@`%` PROCEDURE `Environment_Total_Hosts_Stored_Procedure`(IN inputDate date)
+BEGIN
+
+    select count(DISTINCT `dragownd`.`host`.`ip`) AS `hostCount`,
+        inputDate AS `date`
+    from `dragownd`.`host`
+    where (first_seen <= inputDate AND `last_seen` >= inputDate);
+
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `Environment_Total_Services_Stored_Procedure` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'IGNORE_SPACE,STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`dragownd`@`%` PROCEDURE `Environment_Total_Services_Stored_Procedure`(IN inputDate date)
+BEGIN
+
+    select count(`dragownd`.`host`.`ip`) AS `serviceCount`,
+           inputDate AS `date`
+    from `dragownd`.`host`
+    where (first_seen <= inputDate AND `last_seen` >= inputDate);
+
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `Merge_LastImport` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'IGNORE_SPACE,STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`dragownd`@`%` PROCEDURE `Merge_LastImport`()
+BEGIN
+
+INSERT INTO `dragownd`.`host` (`ip`, `ip_str`, `port`, `hostname`, `active`, `product`, `version`, `os`, `transport`, `first_seen`, `last_seen`, `last_update`)
+	SELECT  `host_LastImport`.`ip`,
+			`host_LastImport`.`ip_str`,
+			`host_LastImport`.`port`,
+			`host_LastImport`.`hostname`,
+			`host_LastImport`.`active`,
+			`host_LastImport`.`product`,
+			`host_LastImport`.`version`,
+			`host_LastImport`.`os`,
+			`host_LastImport`.`transport`,
+			`host_LastImport`.`date`,
+            `host_LastImport`.`date`,
+            `host_LastImport`.`date`
+	FROM `dragownd`.`host_LastImport`
+ON DUPLICATE KEY UPDATE
+	`host`.`active` = 1,
+	`host`.`last_seen` = `host_LastImport`.`date`,
+	`host`.`last_update` = `host_LastImport`.`date`;
+
+# Note: '(select * from host)' is used instead of just 'from host' because a table can't be the source and target of an update statement
+UPDATE `dragownd`.`host`
+SET `host`.`active` = 0,
+	`host`.`last_update` = curdate()
+WHERE `host`.`active` = 1
+	AND `host`.id NOT IN
+		(SELECT h.id
+		 FROM (select * from `dragownd`.`host`) AS h
+		 JOIN `dragownd`.`host_LastImport` hLI
+			ON h.ip = hLI.ip
+			AND h.port = hLI.port);
+
+
+TRUNCATE TABLE `dragownd`.`host_LastImport`;
+
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `Recently_Found_Hosts_Stored_Procedure` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'IGNORE_SPACE,STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`dragownd`@`%` PROCEDURE `Recently_Found_Hosts_Stored_Procedure`(IN inputRange int)
+BEGIN
+
+    select count(DISTINCT `dragownd`.`host`.`ip`)  AS `hostCount`,
+           `dragownd`.`host`.`first_seen` AS `date`
+    from `dragownd`.`host`
+    where `dragownd`.`host`.`first_seen` >= (curdate() - interval (inputRange-1) day)
+      and `dragownd`.`host`.`active` = 1
+    group by first_seen;
+
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `Recently_Found_Hosts_Table_Stored_Procedure` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'IGNORE_SPACE,STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`dragownd`@`%` PROCEDURE `Recently_Found_Hosts_Table_Stored_Procedure`(IN inputRange int)
+BEGIN
+
+    select DISTINCT `dragownd`.`host`.`ip_str` AS `IP`,
+           `dragownd`.`host`.`hostname` AS `Hostname`,
+           `dragownd`.`host`.`os` AS `OS`,
+           `dragownd`.`host`.`first_seen` AS `First Seen`,
+           `dragownd`.`host`.`last_seen` AS `Last Seen`
+    from `dragownd`.`host`
+    where `dragownd`.`host`.`first_seen` >= (curdate() - interval (inputRange-1) day)
+      and `dragownd`.`host`.`active` = 1;
+
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `Recently_Found_Services_Stored_Procedure` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'IGNORE_SPACE,STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`dragownd`@`%` PROCEDURE `Recently_Found_Services_Stored_Procedure`(IN inputRange int)
+BEGIN
+
+    select `dragownd`.`host`.`port`         AS `port`,
+            count(`dragownd`.`host`.`port`) AS `portCount`
+    from `dragownd`.`host`
+    where `dragownd`.`host`.`first_seen` >= (curdate() - interval (inputRange-1) day)
+      and `dragownd`.`host`.`active` = 1
+    group by port;
+
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `Recently_Found_Services_Table_Stored_Procedure` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'IGNORE_SPACE,STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`dragownd`@`%` PROCEDURE `Recently_Found_Services_Table_Stored_Procedure`(IN inputRange int)
+BEGIN
+
+    select `dragownd`.`host`.`ip_str` AS `IP`,
+           `dragownd`.`host`.`hostname` AS `Hostname`,
+           `dragownd`.`host`.`port` AS `Port`,
+           `dragownd`.`host`.`product` AS `Product`,
+           `dragownd`.`host`.`version` AS `Version`,
+           `dragownd`.`host`.`os` AS `OS`,
+           `dragownd`.`host`.`first_seen` AS `First Seen`,
+           `dragownd`.`host`.`last_seen` AS `Last Seen`
+    from `dragownd`.`host`
+    where `dragownd`.`host`.`first_seen` >= (curdate() - interval (inputRange-1) day)
+      and `dragownd`.`host`.`active` = 1;
+
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `Recently_Lost_Hosts_Stored_Procedure` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'IGNORE_SPACE,STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`dragownd`@`%` PROCEDURE `Recently_Lost_Hosts_Stored_Procedure`(IN inputRange int)
+BEGIN
+
+    select count(`dragownd`.`host`.`ip`)  AS `hostCount`,
+           `dragownd`.`host`.`last_seen` + interval 1 day AS `date`
+    from `dragownd`.`host`
+    where `dragownd`.`host`.`last_seen` >= (curdate() - interval inputRange day)
+      and `dragownd`.`host`.`active` = 0
+    group by last_seen;
+
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `Recently_Lost_Services_Stored_Procedure` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'IGNORE_SPACE,STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`dragownd`@`%` PROCEDURE `Recently_Lost_Services_Stored_Procedure`(IN inputRange int)
+BEGIN
+
+    select `dragownd`.`host`.`port`         AS `port`,
+            count(`dragownd`.`host`.`port`) AS `portCount`,
+            `dragownd`.`host`.`last_seen`   AS `last_seen`
+    from `dragownd`.`host`
+    where `dragownd`.`host`.`last_seen` >= (curdate() - interval inputRange day)
+      and `dragownd`.`host`.`active` = 0
+    group by port;
+
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+
+--
+-- Current Database: `dragownd`
+--
+
+USE `dragownd`;
+
+--
+-- Final view structure for view `Active_Hosts`
+--
+
+/*!50001 DROP TABLE IF EXISTS `Active_Hosts`*/;
+/*!50001 DROP VIEW IF EXISTS `Active_Hosts`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = utf8mb4 */;
+/*!50001 SET character_set_results     = utf8mb4 */;
+/*!50001 SET collation_connection      = utf8mb4_general_ci */;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`dragownd`@`%` SQL SECURITY DEFINER */
+/*!50001 VIEW `Active_Hosts` AS select `host`.`id` AS `id`,`host`.`ip` AS `ip`,`host`.`ip_str` AS `ip_str`,`host`.`hostname` AS `hostname`,`host`.`active` AS `active`,`host`.`os` AS `os`,`host`.`transport` AS `transport`,`host`.`first_seen` AS `first_seen`,`host`.`last_seen` AS `last_seen`,`host`.`last_update` AS `last_update` from `host` where `host`.`active` = 1 group by `host`.`ip` */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
+
+--
+-- Final view structure for view `Active_Services`
+--
+
+/*!50001 DROP TABLE IF EXISTS `Active_Services`*/;
+/*!50001 DROP VIEW IF EXISTS `Active_Services`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = utf8mb4 */;
+/*!50001 SET character_set_results     = utf8mb4 */;
+/*!50001 SET collation_connection      = utf8mb4_general_ci */;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`dragownd`@`%` SQL SECURITY DEFINER */
+/*!50001 VIEW `Active_Services` AS select `host`.`id` AS `id`,`host`.`ip` AS `ip`,`host`.`ip_str` AS `ip_str`,`host`.`port` AS `port`,`host`.`hostname` AS `hostname`,`host`.`active` AS `active`,`host`.`product` AS `product`,`host`.`version` AS `version`,`host`.`os` AS `os`,`host`.`transport` AS `transport`,`host`.`first_seen` AS `first_seen`,`host`.`last_seen` AS `last_seen`,`host`.`last_update` AS `last_update` from `host` where `host`.`active` = 1 */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
+
+--
+-- Final view structure for view `Recently_Found_Hosts_1_Day`
+--
+
+/*!50001 DROP TABLE IF EXISTS `Recently_Found_Hosts_1_Day`*/;
+/*!50001 DROP VIEW IF EXISTS `Recently_Found_Hosts_1_Day`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = utf8mb4 */;
+/*!50001 SET character_set_results     = utf8mb4 */;
+/*!50001 SET collation_connection      = utf8mb4_general_ci */;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`dragownd`@`%` SQL SECURITY DEFINER */
+/*!50001 VIEW `Recently_Found_Hosts_1_Day` AS select `host`.`ip` AS `ip`,`host`.`ip_str` AS `ip_str`,`host`.`hostname` AS `hostname`,`host`.`active` AS `active`,`host`.`os` AS `os`,`host`.`first_seen` AS `first_seen`,`host`.`last_seen` AS `last_seen`,`host`.`last_update` AS `last_update` from `host` where `host`.`first_seen` = curdate() and `host`.`active` = 1 group by `host`.`ip` */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
+
+--
+-- Final view structure for view `Recently_Found_Services_1_Day`
+--
+
+/*!50001 DROP TABLE IF EXISTS `Recently_Found_Services_1_Day`*/;
+/*!50001 DROP VIEW IF EXISTS `Recently_Found_Services_1_Day`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = utf8mb4 */;
+/*!50001 SET character_set_results     = utf8mb4 */;
+/*!50001 SET collation_connection      = utf8mb4_general_ci */;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`dragownd`@`%` SQL SECURITY DEFINER */
+/*!50001 VIEW `Recently_Found_Services_1_Day` AS select `host`.`id` AS `id`,`host`.`ip` AS `ip`,`host`.`ip_str` AS `ip_str`,`host`.`port` AS `port`,`host`.`hostname` AS `hostname`,`host`.`active` AS `active`,`host`.`product` AS `product`,`host`.`version` AS `version`,`host`.`os` AS `os`,`host`.`transport` AS `transport`,`host`.`first_seen` AS `first_seen`,`host`.`last_seen` AS `last_seen`,`host`.`last_update` AS `last_update` from `host` where `host`.`first_seen` = curdate() and `host`.`active` = 1 */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
+
+--
+-- Final view structure for view `Recently_Lost_Hosts_1_Day`
+--
+
+/*!50001 DROP TABLE IF EXISTS `Recently_Lost_Hosts_1_Day`*/;
+/*!50001 DROP VIEW IF EXISTS `Recently_Lost_Hosts_1_Day`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = utf8mb4 */;
+/*!50001 SET character_set_results     = utf8mb4 */;
+/*!50001 SET collation_connection      = utf8mb4_general_ci */;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`dragownd`@`%` SQL SECURITY DEFINER */
+/*!50001 VIEW `Recently_Lost_Hosts_1_Day` AS select `host`.`ip` AS `ip`,`host`.`ip_str` AS `ip_str`,`host`.`hostname` AS `hostname`,`host`.`active` AS `active`,`host`.`os` AS `os`,`host`.`first_seen` AS `first_seen`,`host`.`last_seen` AS `last_seen`,`host`.`last_update` AS `last_update` from `host` where `host`.`last_seen` = curdate() - interval 1 day and `host`.`active` = 0 group by `host`.`ip` */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
+
+--
+-- Final view structure for view `Recently_Lost_Services_1_Day`
+--
+
+/*!50001 DROP TABLE IF EXISTS `Recently_Lost_Services_1_Day`*/;
+/*!50001 DROP VIEW IF EXISTS `Recently_Lost_Services_1_Day`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = utf8mb4 */;
+/*!50001 SET character_set_results     = utf8mb4 */;
+/*!50001 SET collation_connection      = utf8mb4_general_ci */;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`dragownd`@`%` SQL SECURITY DEFINER */
+/*!50001 VIEW `Recently_Lost_Services_1_Day` AS select `host`.`id` AS `id`,`host`.`ip` AS `ip`,`host`.`ip_str` AS `ip_str`,`host`.`port` AS `port`,`host`.`hostname` AS `hostname`,`host`.`active` AS `active`,`host`.`product` AS `product`,`host`.`version` AS `version`,`host`.`os` AS `os`,`host`.`transport` AS `transport`,`host`.`first_seen` AS `first_seen`,`host`.`last_seen` AS `last_seen`,`host`.`last_update` AS `last_update` from `host` where `host`.`last_seen` = curdate() - interval 1 day and `host`.`active` = 0 */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2021-04-25 21:42:29

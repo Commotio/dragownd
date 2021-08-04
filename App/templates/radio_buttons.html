@@ -1,0 +1,68 @@
+<head>
+<link rel="shortcut icon" href="static/images/favicon.ico" type="image/x-icon">
+<title>Dragownd Network Monitoring Tool</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<style type="text/css" media="all">
+@import "/static/images/style.css";
+</style>
+</head>
+<body>
+<div class="content">
+  <img src="static/images/icon.png" style="width:50px;height:50px;position:absolute;left:125px;top:25px;">
+  <p style="position:absolute; left:180px; top:50px;color:white; font-size:40px; font-family:'Courier New'; -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: #1a3668; text-shadow: 2px 2px 0 #1a3668, -1px -1px 0 #1a3668, 1px -1px 0 #1a3668, -1px 1px 0 #1a3668, 1px 1px 0 #1a3668;">Dragownd Recon</p>
+  <div class="topmenu">
+    <div class="right_"><a href="https://github.com/Milashner/dragownd">GitHub</a></div>
+    <div class="date_"><? echo date('l dS \of F Y'); ?></div>
+  </div>
+  <div id="submenu">
+  <div class="middle"/>
+	  <div class="graph"/>
+	    <div class="title">{{message}}</div>
+	    <img src={{graph}}/>
+	  </div>
+	  <div class="right">
+      <h2>Time Range:<h2>
+       <form name="myForm" action="" method="post" onsubmit="">
+       <p>
+
+        {% for day in days %}
+
+         {% if day == 1 %}
+            {% set label = 'Last Day' %}
+         {% else %}
+            {% set label = 'Last '~day~' Days' %}
+         {% endif %}
+
+         {% if day == selected %}
+             <input type="radio" name="options" id="option{{loop.index}}" value="{{ day }}" checked="checked"> {{ label }} <br>
+         {% else %}
+             <input type="radio" name="options" id="option{{loop.index}}" value="{{ day }}"> {{ label }} <br>
+         {% endif %}
+
+       {% endfor %}
+
+       </p>
+       <p><input type=submit value=Update></p>
+       </form>
+      <hr />
+    </div>
+  </div>
+  <div class="nav">
+    <ul>
+      <li><a href="/new_services">New Services</a> | </li>
+      <li><a href="/new_hosts">New Hosts</a> | </li>
+      <li><a href="/lost_hosts">Lost Hosts</a> | </li>
+      <li><a href="/total_hosts">Total Hosts</a> | </li>
+      <li><a href="/total_services">Total Services</a></li>
+    </ul>
+  </div>
+  <div class="bottom">
+
+    <div class="left">
+      {% for table in tables%}
+          {{ table|safe }}
+      {% endfor %}
+    </div>
+  </div>
+</body>

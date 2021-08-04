@@ -1,0 +1,59 @@
+<head>
+<title>Dragownd Network Monitoring Tool</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<style type="text/css" media="all">
+@import "/static/images/style.css";
+</style>
+</head>
+<body>
+<div class="content">
+  <div class="topmenu">
+    <div class="right_"><a href="#">About</a> | <a href="#">Contact</a></div>
+    <div class="date_"><? echo date('l dS \of F Y'); ?></div>
+  </div>
+  <div id="submenu">
+    <form action="#">
+      <div class="searchb"><br/>
+        Search the Web:
+        <input type="text" name="search" class="text" />
+        <input type="submit" value="Go" class="submit" />
+      </div>
+    </form>
+    You are not Logged in! <a href="#">Log in</a> to check your messages.<br />
+    Do you want to <a href="#">Log in</a> or <a href="#">register</a>? </div>
+  <div class="graph"/>
+    <div class="title">{{message}}</div>
+    <img src={{graph}}/> 
+  </div>
+  <div class="nav">
+    <ul>
+      <li><a href="/active">Active Hosts</a> | </li>
+      <li><a href="/new_services">New Services</a> | </li>
+      <li><a href="/new_hosts">New Hosts</a> | </li>
+      <li><a href="/lost_hosts">Lost Hosts</a> | </li>
+      <li><a href="/total_hosts">Total Hosts</a> | </li>
+      <li><a href="/total_services">Total Services</a></li>
+    </ul>
+  </div>
+  <div class="right">
+    <h2>Top Articles:</h2>
+    //<img src="/static/images/li.gif" alt="" /> <a href="#">RedBridge Template</a><br />
+    <img src="/static/images/li.gif" alt="" /> <a href="#">Consectetuer adipiscing elit</a><br />
+    <img src="/static/images/li.gif" alt="" /> <a href="#">Lorem ipsum dolor sit amet</a><br />
+    <img src="/static/images/li.gif" alt="" /> <a href="#">dolor sit amet consectet</a><br />
+    <hr />
+    <h2>What is sNews?</h2>
+    sNews is a completly free PHP and MySQL driven tool for publishing and maintaining news articles on a website. Integrating sNews into your existing design is simple, but you could also use sNews on it's own, as a simple Content Management System. Consisting of only one file, sNews is extremely lightweight, very easy to install, and easy to use via a simple web interface.
+    <hr />
+    <h2>How to use it?</h2>
+    You can place the functions provided in the index.php script into your existing design, or you can use the design already provided in the download package. Solucija itself is an excellent example of an sNews driven site.
+    <hr />
+    <h2>Links</h2>
+    <img src="/static/images/li.gif" alt="" /> <a href="#">Solucija.com</a><br />
+    <img src="/static/images/li.gif" alt="" /> <a href="#">Free css templates</a><br />
+  </div>
+
+      {% for table in tables%}
+          {{ table|safe }}
+      {% endfor %}
+</body>

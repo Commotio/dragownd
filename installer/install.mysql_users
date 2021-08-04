@@ -1,0 +1,10 @@
+CREATE DATABASE /*!32312 IF NOT EXISTS*/ `dragownd` /*!40100 DEFAULT CHARACTER SET utf8mb4 */;
+
+CREATE USER 'dragownd' IDENTIFIED BY '<password>';
+CREATE USER 'dragowndRO' IDENTIFIED BY 'dragowndRO';
+ALTER USER 'root'@'localhost' IDENTIFIED BY '<password>';
+
+GRANT ALL PRIVILEGES ON dragownd.* TO 'dragownd'@'%' IDENTIFIED BY '<password>';
+GRANT SELECT ON dragownd.* TO 'dragowndRO'@'%';
+
+FLUSH PRIVILEGES;

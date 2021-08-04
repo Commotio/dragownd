@@ -1,0 +1,13 @@
+.search_row .search {
+    background: #008FFF;
+    color: #fff;
+    border: #fff 1px solid;
+    padding: 4px 8px;
+    font-weight: bold;
+    border-radius: 5px;
+    float: right;
+}
+
+.search_row .bar {
+    width: 100%
+}

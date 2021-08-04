@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+
+    <!--    Custom CSS-->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"/>
+
+    <title>Dragownd Network Monitoring</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Flask CRUD</h1>
+
+            <div class="search_row">
+                <input type="text" class="bar" placeholder="Search hosts">
+                <button class="search">Search</button>
+            </div>
+
+<!--            Flask will fill in the data-->
+            {% for table in tables%}
+                {{ table|safe }}
+            {% endfor %}
+
+
+    </div>
+</body>
+</html>
