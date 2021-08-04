@@ -32,6 +32,9 @@ fi
 
 # Install Python3 Dependencies
 echo 'Installing Python requirements...'
+sudo apt update
+sudo apt install default-libmysqlclient-dev
+pip install -r requirements.txt
 pip3 install -r requirements.txt
 echo 'Python requirements successfully installed!'
 
@@ -41,6 +44,7 @@ echo 'Python requirements successfully installed!'
 echo 'Installing MySQL schema, tables, views, and users...'
 read -sp 'MySQL root password: ' mysql_root_pass
 sed -i "s/<password>/$mysql_root_pass/" install.mysql_users
+mysql -uroot -p'' -e "alter user 'root'@'localhost' identified by $mysql_root_pass" 
 
 # Restart mysql to make sure it's running
 systemctl restart mysql
