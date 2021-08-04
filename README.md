@@ -1,5 +1,8 @@
 # This tool is a graphic interface for regularly scanning a network and monitoring services and hosts.
 
+###Requirements: 
+Ensure that you have mysql installed, and you know the root password.
+
 To install, cd to the installer directory and run the `install.sh` script in the installer directory
 
     ./install.sh
