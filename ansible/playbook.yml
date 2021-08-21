@@ -3,8 +3,28 @@
   vars:
     ssh_key: ~/.ssh/id_rsa
     path: ~/dragownd
-    username: dragownd
 
   vars_prompt:
+    - name: mysql_root_password:
+        prompt: What is the current mysql root password (or what would you like to make it)
     - name: password
-      prompt: What would you like the mysql root password to be?
+        prompt: What would you like the mysql user password to be?
+    - name: host_path
+        prompt: Where did you clone this repository on your local machine (i.e. ~/dragownd)
+        private: no
+
+- name: symbolic link to Apps 
+  hosts: 127.0.0.1
+  connection: local
+  tasks:
+  - name: symbolic link
+    ansible.builtin.shell:
+      cmd: ln -s "{{ host_path }}/App" "{{ host_path }}/ansible/roles/webApp/files/App"
+
+- name: symbolic link to Install 
+  hosts: 127.0.0.1
+  connection: local
+  tasks:
+  - name: symbolic link
+    ansible.builtin.shell:
+      cmd: ln -s "{{ host_path }}/installer" "{{ host_path }}/ansible/roles/db/files/installer"

@@ -43,7 +43,7 @@ echo 'Python requirements successfully installed!'
 # Get root SQL password
 echo 'Installing MySQL schema, tables, views, and users...'
 read -sp 'MySQL root password: ' mysql_root_pass
-sed -i "s/<password>/$mysql_root_pass/" install.mysql_users
+sed -i "s/{{ password }}/$mysql_root_pass/" install.mysql_users
 mysql -uroot -p'' -e "alter user 'root'@'localhost' identified by $mysql_root_pass" 
 
 # Restart mysql to make sure it's running
@@ -63,9 +63,9 @@ read -p "Absolute path to the dragownd repo (include the dragownd directory? Ex.
 read -p "Please enter the desired network range/ranges in CIDR format, separated by commas - Ex. '127.0.0.1/16,10.0.0.1/16': " ranges
 echo -e ${ranges/,/$'\n'} > ../nmap/ranges.txt
 
-sed -i "s|<path>|$path|" $path/nmap/nmap_recon.py
-sed -i "s/<password>/$mysql_root_pass/" $path/nmap/nmap_recon.py
-sed -i "s/<password>/$mysql_root_pass/" $path/App/connect.py
+sed -i "s|{{ path }}|$path|" $path/nmap/nmap_recon.py
+sed -i "s/{{ password }}/$mysql_root_pass/" $path/nmap/nmap_recon.py
+sed -i "s/{{ password }}/$mysql_root_pass/" $path/App/connect.py
 
 mkdir $path/archives
 

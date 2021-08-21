@@ -21,7 +21,7 @@ app = Flask(__name__)
 
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'dragownd'
-app.config['MYSQL_PASSWORD'] = '<password>' #CHANGE
+app.config['MYSQL_PASSWORD'] = '{{ password }}' #CHANGE
 app.config['MYSQL_DB'] = 'dragownd'
 
 mysql = MySQL(app)

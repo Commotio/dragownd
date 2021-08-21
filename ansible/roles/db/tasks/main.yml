@@ -1,0 +1,47 @@
+---
+- name: Install mysql
+  apt:
+    name: "{{ item }}"
+    state: present
+    update_cache: yes
+    cache_valid_time: 3600
+  loop:
+    - mariadb-server
+    - default-libmysqlclient-dev
+
+- name: Copy Template Locally
+  copy:
+    src: "{{ host_path }}/ansible/roles/db/files/installer/"
+    dest: "{{ path }}/installer"
+
+- name: Create root db user
+  community.mysql.mysql_user:
+    check_implicit_admin: yes
+    login_user: root
+    login_password: "{{ mysql_root_password }}"
+    name: root
+    password: "{{ mysql_root_password }}"
+    priv: '*.*:ALL,'
+    state: present
+
+- name: Create dragownd db
+  community.mysql.mysql_db:
+    check_implicit_admin: yes
+    login_user: root
+    login_password: "{{ mysql_root_password }}"
+    name: dragownd
+    state: present
+
+- name: Create dragownd db user
+  community.mysql.mysql_user:
+    check_implicit_admin: yes
+    login_user: root
+    login_password: "{{ mysql_root_password }}"
+    name: dragownd
+    password: "{{ password }}"
+    priv: 'dragownd.*:ALL,'
+    state: present
+
+- name: import tables and views
+  ansible.builtin.shell:
+    cmd: mysql -uroot -p"{{ mysql_root_password }}"< "{{ path }}/installer/install.mysql"

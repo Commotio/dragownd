@@ -23,19 +23,24 @@
 
 - name: Install Python3 Dependencies
   pip:
-    requirements: ~/dragownd/requirements.txt
+    requirements: "{{ path }}/requirements.txt"
 
 - name: Install Python2 Dependencies (JIC)
   ansible.builtin.shell:
-    cmd: pip install ~/dragownd/requirements.txt
+    cmd: pip install "{{ path }}/requirements.txt"
 
 - name: Copy Template Locally
   copy:
-    src: App/connect.py
-    dest: ../templates/connect.j2
+    src: "{{ host_path }}/ansible/roles/webApp/files/App/connect.py"
+    dest: "{{ host_path }}/ansible/roles/webApp/templates/connect.j2"
     delegate_to: localhost
 
 - Populate Config
   template:
     src: connect.j2
     dest: "{{ path }}/connect.py"
+
+- name: Start Flask
+  shell: "flask run"
+    environment:
+      FLASK_APP: "{{ path }}/App/connect.py"

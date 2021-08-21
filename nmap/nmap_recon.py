@@ -7,11 +7,11 @@ import os, sys
 import subprocess
 
 # # GLOBAL VARIABLES # # # # # # # # # # # # # # # # #
-DIRECTORY = r'<path>/nmap' #change
+DIRECTORY = r'{{ path }}/nmap' #change
 path = DIRECTORY + r'/nmap.sh'
 
 DB_USER = "dragownd"
-DB_PASSWD = "<password>" #change
+DB_PASSWD = "{{ password }}" #change
 DB_HOST = "localhost"
 DB_NAME = "dragownd"
 # # # # # # # # # # # # # # # # # # # # # # # # # # #
