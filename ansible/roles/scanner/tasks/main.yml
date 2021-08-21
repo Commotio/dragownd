@@ -1,10 +1,22 @@
 ---
+- name: Include Vars (free-form)
+  include_vars: 
+    file: config.yml
+
+- name: Create symbolic link to nmap locally
+  ansible.builtin.file:
+    src: "{{ host_path }}/nmap/"
+    dest: "{{ host_path }}/ansible/roles/scanner/files/nmap"
+    state: link
+  delegate_to: localhost
+
 - name: Install nmap
   apt:
     name: "nmap"
     state: present
     update_cache: yes
     cache_valid_time: 3600
+  become: yes
 
 - name: Copy nmap Files to Server
   copy:
@@ -15,18 +27,18 @@
   copy:
     src: "{{ item.src }}"
     dest: "{{ item.dest }}"
-    delegate_to: localhost
-    loop:
-      - { src: "{{ host_path }}/ansible/roles/scanner/files/nmap/nmap_recon.py", dest: "{{ host_path }}/ansible/roles/scanner/templates/nmap_recon.j2" }
-      - { src: "{{ host_path }}/ansible/roles/scanner/files/nmap/ranges.txt", dest: "{{ host_path }}/ansible/roles/scanner/templates/ranges.j2" }
+  delegate_to: localhost
+  loop:
+    - { src: "{{ host_path }}/ansible/roles/scanner/files/nmap/nmap_recon.py", dest: "{{ host_path }}/ansible/roles/scanner/templates/nmap_recon.j2" }
+    - { src: "{{ host_path }}/ansible/roles/scanner/files/nmap/ranges.txt", dest: "{{ host_path }}/ansible/roles/scanner/templates/ranges.j2" }
 
 - name: Config with Templates
   template:
     src: "{{ item.src }}"
     dest: "{{ item.dest }}"
-    loop:
-        - { src: "{{ host_path }}/ansible/roles/scanner/templates/nmap_recon.j2", dest: "{{ path }}/nmap/nmap_recon.py" }
-        - { src: "{{ host_path }}/ansible/roles/scanner/templates/ranges.j2", dest: "{{ path }}/nmap/ranges.txt" }
+  loop:
+      - { src: "{{ host_path }}/ansible/roles/scanner/templates/nmap_recon.j2", dest: "{{ path }}/nmap/nmap_recon.py" }
+      - { src: "{{ host_path }}/ansible/roles/scanner/templates/ranges.j2", dest: "{{ path }}/nmap/ranges.txt" }
 
 
 - name: Create Scanner cronjob
@@ -37,4 +49,4 @@
 
 - name: Run nmap Script
   ansible.builtin.shell:
-    cmd: screen -L -d -m python3 "{{ path }}/nmap/nmap_recon.py"
+    cmd: screen -R nmap -L -d -m python3 "{{ path }}/nmap/nmap_recon.py"

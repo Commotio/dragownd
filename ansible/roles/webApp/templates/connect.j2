@@ -19,9 +19,9 @@ time=datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
 
 app = Flask(__name__)
 
-app.config['MYSQL_HOST'] = 'localhost'
+app.config['MYSQL_HOST'] = "{{ db_host }}"
 app.config['MYSQL_USER'] = 'dragownd'
-app.config['MYSQL_PASSWORD'] = '<password>' #CHANGE
+app.config['MYSQL_PASSWORD'] = '{{ password }}' #CHANGE
 app.config['MYSQL_DB'] = 'dragownd'
 
 mysql = MySQL(app)

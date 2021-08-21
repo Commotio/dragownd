@@ -1,13 +1,24 @@
 ---
+- name: Include Vars
+  include_vars: config.yml
+
+- name: Create symbolic link to Apps locally
+  ansible.builtin.file:
+    src: "{{ host_path }}/App/"
+    dest: "{{ host_path }}/ansible/roles/webApp/files/App"
+    state: link
+  delegate_to: localhost
+
 - name: Install Python3
   apt:
     name: "{{ item }}"
     state: present
-    update_cache: yes
     cache_valid_time: 3600
   loop:
     - python3
+    - python3-pip
     - default-libmysqlclient-dev
+  become: yes
 
 - name: Make Dragownd Directory
   ansible.builtin.file:
@@ -17,31 +28,30 @@
 - name: Copy Config to Server
   copy:
     src: "{{ item.src }}"
-    dest: " {{ item.dest }} "
-    loop:
-      - { src: "requirements.txt", dest: "{{ path }}/requirements.txt"}
-      - { src: "App", dest: "{{ path }}/requirements.txt"}
+    dest: "{{ item.dest }}"
+    force: yes
+  loop:
+    - { src: App/, dest: "{{ path }}/App" }
+    - { src: "{{ host_path }}/installer/requirements.txt", dest: "{{ path }}/requirements.txt" }
 
 - name: Install Python3 Dependencies
   pip:
     requirements: "{{ path }}/requirements.txt"
 
-- name: Install Python2 Dependencies (JIC)
-  ansible.builtin.shell:
-    cmd: pip install "{{ path }}/requirements.txt"
-
 - name: Copy Template Locally
   copy:
     src: "{{ host_path }}/ansible/roles/webApp/files/App/connect.py"
     dest: "{{ host_path }}/ansible/roles/webApp/templates/connect.j2"
-    delegate_to: localhost
+  delegate_to: localhost
 
 - name: Populate Config
   template:
     src: connect.j2
-    dest: "{{ path }}/connect.py"
+    dest: "{{ path }}/App/connect.py"
 
 - name: Start Flask
-  ansible.builtin.shell: "flask run"
-  environment:
-    FLASK_APP: "{{ path }}/App/connect.py"
+  ansible.builtin.shell: 
+    chdir: "{{ path }}/App"
+    cmd: ./runflask.sh
+  args:
+    executable: /bin/bash

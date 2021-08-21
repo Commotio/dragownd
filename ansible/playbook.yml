@@ -1,46 +1,12 @@
 ---
-- hosts: all
-  vars:
-    ansible_user: "ec2-user"
-    ssh_key: "~/.ssh/id_rsa"
-    path: "~/dragownd"
-    mysql_root_password: "changeme"
-    password: "changeme"
-    host_path: "~/dragownd"
-    range: "127.0.0.1/16"
-
-- name: symbolic link to Apps 
-  hosts: localhost
-  connection: local
-  tasks:
-  - name: symbolic link
-    ansible.builtin.shell:
-      cmd: ln -s "{{ host_path }}/App" "{{ host_path }}/ansible/roles/webApp/files/App"
-
-- name: symbolic link to Install 
-  hosts: localhost
-  connection: local
-  tasks:
-  - name: symbolic link
-    ansible.builtin.shell:
-      cmd: ln -s "{{ host_path }}/installer" "{{ host_path }}/ansible/roles/db/files/installer"
-
-- name: symbolic link to nmap 
-  hosts: localhost
-  connection: local
-  tasks:
-  - name: symbolic link
-    ansible.builtin.shell:
-      cmd: ln -s "{{ host_path }}/nmap" "{{ host_path }}/ansible/roles/scanner/files/nmap"
-
 - hosts: db
   roles:
-      - db
+    - db
 
 - hosts: scanner
   roles:
-      - scanner
+    - scanner
 
 - hosts: webApp
   roles:
-      - webApp
+     - webApp

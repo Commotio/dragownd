@@ -67,6 +67,8 @@ sed -i "s|{{ path }}|$path|" $path/nmap/nmap_recon.py
 sed -i "s|{{ path }}|$path|" $path/nmap/nmap_recon.py
 sed -i "s/{{ password }}/$mysql_root_pass/" $path/nmap/nmap_recon.py
 sed -i "s/{{ password }}/$mysql_root_pass/" $path/App/connect.py
+sed -i "s/{{ hostvars[groups['db'][0]]['ansible_eth0']['ipv4']['address'] }}/localhost/" $path/App/connect.py
+sed -i "s/{{ hostvars[groups['db'][0]]['ansible_eth0']['ipv4']['address'] }}/localhost/" $path/nmap/nmap_recon.py
 
 mkdir $path/archives
 
