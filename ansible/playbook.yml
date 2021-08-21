@@ -3,21 +3,10 @@
   vars:
     ssh_key: ~/.ssh/id_rsa
     path: ~/dragownd
-
-  vars_prompt:
-    - name: mysql_root_password:
-      prompt: What is the current mysql root password (or what would you like to make it)
-    
-    - name: password
-      prompt: What would you like the mysql user password to be?
-    
-    - name: host_path
-      prompt: Where did you clone this repository on your local machine (i.e. ~/dragownd)
-      private: no
-    
-    - name: range
-      prompt: What IP range would you like to scan (i.e. 127.0.0.1/24)
-
+    mysql_root_password:
+    password
+    host_path
+    range
 - name: symbolic link to Apps 
   hosts: 127.0.0.1
   connection: local
