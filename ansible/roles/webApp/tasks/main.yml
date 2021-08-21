@@ -1,0 +1,41 @@
+---
+- name: Install Python3
+  apt:
+    name: "{{ item }}"
+    state: present
+    update_cache: yes
+    cache_valid_time: 3600
+  loop:
+    - python3
+    - default-libmysqlclient-dev
+
+- name: Make Dragownd Directory
+  ansible.builtin.file:
+    path: "{{ path }}"
+    state: directory
+
+- name: Copy Config to Server
+  copy:
+    src: "{{ item.src }}"
+    dest: " {{ item.dest }} "
+      - { src: "requirements.txt", dest: "{{ path }}/requirements.txt"}
+      - { src: "App", dest: "{{ path }}/requirements.txt"}
+
+- name: Install Python3 Dependencies
+  pip:
+    requirements: ~/dragownd/requirements.txt
+
+- name: Install Python2 Dependencies (JIC)
+  ansible.builtin.shell:
+    cmd: pip install ~/dragownd/requirements.txt
+
+- name: Copy Template Locally
+  copy:
+    src: App/connect.py
+    dest: ../templates/connect.j2
+    delegate_to: localhost
+
+- Populate Config
+  template:
+    src: connect.j2
+    dest: "{{ path }}/connect.py"

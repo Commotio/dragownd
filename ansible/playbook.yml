@@ -1,0 +1,10 @@
+---
+- hosts: all
+  vars:
+    ssh_key: ~/.ssh/id_rsa
+    path: ~/dragownd
+    username: dragownd
+
+  vars_prompt:
+    - name: password
+      prompt: What would you like the mysql root password to be?
