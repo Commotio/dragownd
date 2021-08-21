@@ -12,13 +12,13 @@
     dest: "{{ path }}/nmap"
 
 - name: Copy nmap Templates Locally
-    copy:
-      src: "{{ item.src }}"
-      dest: "{{ item.dest }}"
-      delegate_to: localhost
-      loop:
-        - { src: "{{ host_path }}/ansible/roles/scanner/files/nmap/nmap_recon.py", dest: "{{ host_path }}/ansible/roles/scanner/templates/nmap_recon.j2" }
-        - { src: "{{ host_path }}/ansible/roles/scanner/files/nmap/ranges.txt", dest: "{{ host_path }}/ansible/roles/scanner/templates/ranges.j2" }
+  copy:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+    delegate_to: localhost
+    loop:
+      - { src: "{{ host_path }}/ansible/roles/scanner/files/nmap/nmap_recon.py", dest: "{{ host_path }}/ansible/roles/scanner/templates/nmap_recon.j2" }
+      - { src: "{{ host_path }}/ansible/roles/scanner/files/nmap/ranges.txt", dest: "{{ host_path }}/ansible/roles/scanner/templates/ranges.j2" }
 
 - name: Config with Templates
   template:

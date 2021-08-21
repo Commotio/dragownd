@@ -18,6 +18,7 @@
   copy:
     src: "{{ item.src }}"
     dest: " {{ item.dest }} "
+    loop:
       - { src: "requirements.txt", dest: "{{ path }}/requirements.txt"}
       - { src: "App", dest: "{{ path }}/requirements.txt"}
 
@@ -35,12 +36,12 @@
     dest: "{{ host_path }}/ansible/roles/webApp/templates/connect.j2"
     delegate_to: localhost
 
-- Populate Config
+- name: Populate Config
   template:
     src: connect.j2
     dest: "{{ path }}/connect.py"
 
 - name: Start Flask
-  shell: "flask run"
-    environment:
-      FLASK_APP: "{{ path }}/App/connect.py"
+  ansible.builtin.shell: "flask run"
+  environment:
+    FLASK_APP: "{{ path }}/App/connect.py"
