@@ -64,6 +64,7 @@ read -p "Please enter the desired network range/ranges in CIDR format, separated
 echo -e ${ranges/,/$'\n'} > ../nmap/ranges.txt
 
 sed -i "s|{{ path }}|$path|" $path/nmap/nmap_recon.py
+sed -i "s|{{ path }}|$path|" $path/nmap/nmap_recon.py
 sed -i "s/{{ password }}/$mysql_root_pass/" $path/nmap/nmap_recon.py
 sed -i "s/{{ password }}/$mysql_root_pass/" $path/App/connect.py
 

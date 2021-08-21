@@ -12,7 +12,7 @@ path = DIRECTORY + r'/nmap.sh'
 
 DB_USER = "dragownd"
 DB_PASSWD = "{{ password }}" #change
-DB_HOST = "localhost"
+DB_HOST = "{{ hostvars['db'].ansible_host }}"
 DB_NAME = "dragownd"
 # # # # # # # # # # # # # # # # # # # # # # # # # # #
 

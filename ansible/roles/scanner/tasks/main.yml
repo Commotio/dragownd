@@ -1,0 +1,40 @@
+---
+- name: Install nmap
+  apt:
+    name: "nmap"
+    state: present
+    update_cache: yes
+    cache_valid_time: 3600
+
+- name: Copy nmap Files to Server
+  copy:
+    src: "{{ host_path }}/ansible/roles/scanner/files/nmap"
+    dest: "{{ path }}/nmap"
+
+- name: Copy nmap Templates Locally
+    copy:
+      src: "{{ item.src }}"
+      dest: "{{ item.dest }}"
+      delegate_to: localhost
+      loop:
+        - { src: "{{ host_path }}/ansible/roles/scanner/files/nmap/nmap_recon.py", dest: "{{ host_path }}/ansible/roles/scanner/templates/nmap_recon.j2" }
+        - { src: "{{ host_path }}/ansible/roles/scanner/files/nmap/ranges.txt", dest: "{{ host_path }}/ansible/roles/scanner/templates/ranges.j2" }
+
+- name: Config with Templates
+  template:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+    loop:
+        - { src: "{{ host_path }}/ansible/roles/scanner/templates/nmap_recon.j2", dest: "{{ path }}/nmap/nmap_recon.py" }
+        - { src: "{{ host_path }}/ansible/roles/scanner/templates/ranges.j2", dest: "{{ path }}/nmap/ranges.txt" }
+
+
+- name: Create Scanner cronjob
+  ansible.builtin.cron:
+    name: dragownd daily nmap
+    special_time: daily
+    job: python3 "{{ path }}/nmap/nmap_recon.py" > "{{ path }}/nmap/crontab.log"
+
+- name: Run nmap Script
+  ansible.builtin.shell:
+    cmd: screen -L -d -m python3 "{{ path }}/nmap/nmap_recon.py"
