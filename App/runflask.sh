@@ -1,3 +1,5 @@
 #! /bin/bash
 export FLASK_APP=connect.py
-flask run
+flask_loc=$(which flask)
+
+$flask_loc run

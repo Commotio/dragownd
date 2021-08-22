@@ -49,9 +49,17 @@
     src: connect.j2
     dest: "{{ path }}/App/connect.py"
 
+
+- name: Install Flask to Ansible Path
+  ansible.builtin.shell: 
+    chdir: "{{ path }}/App"
+    cmd: pip3 install flask
+  args:
+    executable: /bin/bash
+
 - name: Start Flask
   ansible.builtin.shell: 
     chdir: "{{ path }}/App"
-    cmd: ./runflask.sh
+    cmd: screen -R flask -L -d -m ./runflask.sh
   args:
     executable: /bin/bash
