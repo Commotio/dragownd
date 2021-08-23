@@ -1,17 +1,17 @@
 # This tool is a graphic interface for regularly scanning a network and monitoring services and hosts.
 
-##ansible installation:
-###Requirements:
+## ansible installation:
+### Requirements:
 Install ansible `sudo apt install ansible`
 
-###Setup:
+### Setup:
 1. Navigate to the ansible directory and modify the hosts file with the IP address for each host
-1. Modify the config.yml file as necessary (follow the comments for guidance)
+1. Modify the `config.yml` file as necessary (follow the comments for guidance)
 1. `export ANSIBLE_HOST_KEY_CHECKING=False`
 1. Run the playbook: `ansible-playbook -i hosts playbook.yml --user <remote_username> --private-key <path_to_sshkey> 
 
-##localhost installation:
-###Requirements: 
+## localhost installation:
+### Requirements: 
 Ensure that you have mysql installed, and you know the root password.
 
 To install, cd to the installer directory and run the `install.sh` script in the installer directory
