@@ -6,7 +6,7 @@
   lineinfile:
     path: "{{ host_path }}/ansible/config.yml"
     line: "db_host: {{ inventory_hostname }}"
-    insertafter: EOF
+    regexp: db_host.*
   delegate_to: localhost
 
 - name: Include Vars Again
@@ -30,6 +30,13 @@
     - mariadb-server
     - python3-pip
 
+- name: Change mysql config to allow remote
+  ansible.builtin.lineinfile:
+    path: /etc/mysql/mariadb.conf.d/50-server.cnf
+    regexp: bind-address.*
+    line: bind-address = 0.0.0.0
+  become: yes
+
 - name: Install pymysql
   pip:
     name: pymysql
@@ -47,7 +54,7 @@
 - name: Start the MySQL Service
   service:  
     name=mysql 
-    state=started
+    state=restarted
     enabled=yes
   become: yes
 
@@ -78,6 +85,7 @@
     login_password: "{{ mysql_root_password }}"
     name: dragownd
     password: "{{ password }}"
+    host: '%'
     priv: 'dragownd.*:ALL,GRANT'
     state: present
 

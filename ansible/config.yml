@@ -3,3 +3,4 @@ mysql_root_password: "changeme"
 password: "changeme" # password for the dragownd mysql user 
 host_path: "~/dragownd" # path that you cloned the repo into (including dragownd)
 range: "127.0.0.1/16" # range to scan
+db_host: 127.0.0.1
