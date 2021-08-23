@@ -49,4 +49,4 @@
 
 - name: Run nmap Script
   ansible.builtin.shell:
-    cmd: screen -R nmap -L -d -m python3 "{{ path }}/nmap/nmap_recon.py"
+    cmd: screen -S nmap -L -d -m python3 "{{ path }}/nmap/nmap_recon.py"

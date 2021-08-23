@@ -49,6 +49,10 @@
     src: connect.j2
     dest: "{{ path }}/App/connect.py"
 
+- name: Change Script Permissions
+  ansible.builtin.file:
+    path: "{{ path }}/App/runflask.sh"
+    mode: 0711
 
 - name: Install Flask to Ansible Path
   ansible.builtin.shell: 
@@ -60,6 +64,6 @@
 - name: Start Flask
   ansible.builtin.shell: 
     chdir: "{{ path }}/App"
-    cmd: screen -R flask -L -d -m ./runflask.sh
+    cmd: screen -S flask -L -d -m ./runflask.sh
   args:
     executable: /bin/bash
