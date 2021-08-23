@@ -61,9 +61,15 @@
   args:
     executable: /bin/bash
 
+- name: apt flask
+  apt:
+    name: python3-flask
+    state: latest
+  become: yes
+
 - name: Start Flask
   ansible.builtin.shell: 
     chdir: "{{ path }}/App"
-    cmd: screen -S flask -L -d -m ./runflask.sh
+    cmd: screen -S flask -L -d -m  bash -c ./runflask.sh && sleep 1
   args:
     executable: /bin/bash

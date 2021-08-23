@@ -20,8 +20,29 @@
 
 - name: Copy nmap Files to Server
   copy:
-    src: "{{ host_path }}/ansible/roles/scanner/files/nmap"
+    src: "{{ host_path }}/nmap/"
     dest: "{{ path }}/nmap"
+
+- name: Install Python3
+  apt:
+    name: "{{ item }}"
+    state: present
+    cache_valid_time: 3600
+  loop:
+    - python3
+    - python3-pip
+    - default-libmysqlclient-dev
+  become: yes
+
+- name: Copy Requirements to Server
+  copy:
+    src: "{{ host_path }}/installer/requirements.txt"
+    dest: "{{ path }}/requirements.txt"
+    force: yes
+
+- name: Install Python3 Dependencies
+  pip:
+    requirements: "{{ path }}/requirements.txt"
 
 - name: Copy nmap Templates Locally
   copy:
@@ -46,7 +67,9 @@
     name: dragownd daily nmap
     special_time: daily
     job: python3 "{{ path }}/nmap/nmap_recon.py" > "{{ path }}/nmap/crontab.log"
+  become: yes
 
 - name: Run nmap Script
   ansible.builtin.shell:
-    cmd: screen -S nmap -L -d -m python3 "{{ path }}/nmap/nmap_recon.py"
+    chdir: "{{ path }}/nmap/"
+    cmd: screen -S nmap -L -d -m python3 "{{ path }}/nmap/nmap_recon.py" && sleep 1
